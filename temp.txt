@@ -1,0 +1,29 @@
+#Path for the cross compiler(i686-elf-gcc):
+export PATH="$HOME/opt/cross/bin:$PATH"
+
+#Assemble boot.s:
+i686-elf-as boot.s -o boot.o
+
+#Compile kernel.c:
+i686-elf-gcc -c kernel.c -o kernel.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra
+
+#Link boot.o and kernel.o to form the final kernel image using linker.ld:
+i686-elf-gcc -T linker.ld -o myos.bin -ffreestanding -O2 -nostdlib boot.o kernel.o -lgcc
+
+#Verify whether the binary has a Multiboot version 1 header:
+if grub-file --is-x86-multiboot myos.bin; then
+  echo multiboot confirmed
+else
+  echo the file is not multiboot
+fi
+
+#To create a bootable CD-ROM image of the OS containing GRUB-bootloader and the kernel:
+mkdir -p isodir/boot/grub
+cp myos.bin isodir/boot/myos.bin
+cp grub.cfg isodir/boot/grub/grub.cfg
+grub-mkrescue -o myos.iso isodir
+
+#Simply adding the ISO to the CD drive of an empty virtual machine will do the trick
+
+#To start the operating system:
+qemu-system-i386 -cdrom myos.iso
