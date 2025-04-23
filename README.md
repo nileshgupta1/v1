@@ -1,17 +1,14 @@
-# NilOS - A Minimal Operating System
-
-Welcome to **NilOS**, a lightweight operating system built from scratch.
 
 ## Project Structure
 
-- `kernel/` - The heart of the OS, with boot code, terminal output, and kernel logic.
+- `kernel/` - Contains boot code, terminal output, and kernel logic.
 - `libc/` - A minimal C library (`libk`) for the kernel, plus a placeholder for a full `libc`.
 - `sysroot/` - A temporary root filesystem populated during the build.
 - Build scripts (`*.sh`) - Tools to compile, clean, and create a bootable ISO.
 
 ## Prerequisites
 
-To build and run NilOS, you’ll need a Unix-like system (Linux is ideal). Windows users can try WSL or Cygwin. Here’s what is needed:
+To build and run the project, you’ll need a Unix-like system (Linux is ideal). Windows users can try WSL or Cygwin. Here’s what is needed:
 
 ### Software Dependencies
 - **GCC Cross-Compiler (i686-elf)** - For compiling the kernel and libraries.
@@ -28,7 +25,7 @@ To build and run NilOS, you’ll need a Unix-like system (Linux is ideal). Windo
 
 ### Step 1: Clone the Repository
 ```
-git clone https://github.com/nileshgupta1/nilos.git
+git clone https://github.com/nileshgupta1/v1.git
 cd nilos
 ```
 
